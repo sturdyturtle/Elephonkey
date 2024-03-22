@@ -2,20 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Elephonkey.ViewViewModels.Main.LoginPageView">
-
-    <StackLayout>
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Label Text="Enter Milkshake Info" FontSize="25" FontAttributes="Bold,Italic" TextColor="CadetBlue" />
-        </StackLayout>
-
-        <Entry Placeholder="{Binding EmailFieldText}"  FontSize="Small"  HorizontalOptions="FillAndExpand" TextColor="Blue" x:Name="ParlorTitle" />
-
-        <Entry Placeholder="{Binding PasswordFieldText}"  FontSize="Small"  HorizontalOptions="FillAndExpand" TextColor="Blue" x:Name="FlavorTitle" />
-
-        <StackLayout HorizontalOptions="FillAndExpand">
-            <Button Text="{Binding LoginButtonText, Mode=TwoWay}"  Command="{Binding OnLoginButtonClicked}" Padding="20"
-                         BackgroundColor="Green" TextColor="White" FontSize="Medium" FontAttributes="Bold" x:Name="saveBtn" />
-        </StackLayout>
-
-    </StackLayout>
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
 </ContentPage>

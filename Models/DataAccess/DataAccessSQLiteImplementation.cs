@@ -64,7 +64,7 @@ namespace Elephonkey.Models.DataAccess
         }
 
         //Method to save a new Login record
-        public async Task<string> CreateLogin(EntityLogin Login)
+        public async Task<string> CreateAccount(EntityLogin Login)
         {
             string result = string.Empty;
 
@@ -131,7 +131,7 @@ namespace Elephonkey.Models.DataAccess
         }
 
         //Method to update an existing Login record
-        public async Task<bool> UpdateLogin(EntityLogin Login)
+        public async Task<bool> ForgotPassword(EntityLogin Login)
         {
             bool res = false;
 

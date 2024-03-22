@@ -9,7 +9,7 @@ namespace Elephonkey
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new HomePageView());
+            MainPage = new NavigationPage(new LoginPageView());
         }
     }
 }
