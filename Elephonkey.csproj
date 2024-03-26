@@ -61,13 +61,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ViewViewModels\Main\AppContents\ArticlesPageContents\ArticlesPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ViewViewModels\Main\AppContents\HomePageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\LoginContents\CreateAccountPageView.xaml">
+	  <MauiXaml Update="ViewViewModels\Main\AppContents\ResultsPageContents\ResultsPageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\LoginContents\ForgotPasswordPageView.xaml">
+	  <MauiXaml Update="ViewViewModels\Main\AppContents\SettingsPageContents\SettingsPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewViewModels\Main\AppContents\SurveyPageContents\SurveyPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewViewModels\Main\LoginContents\CreateAccountPageContents\CreateAccountPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewViewModels\Main\LoginContents\ForgotPasswordPageContents\ForgotPasswordPageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ViewViewModels\Main\LoginPageView.xaml">

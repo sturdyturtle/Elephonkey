@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Elephonkey.ViewViewModels.Main.LoginContents
+namespace Elephonkey.ViewViewModels.Main.AppContents.SettingsPageContents
 {
-    class CreateAccountPageViewModel
+    internal class SettingsPageViewModel
     {
     }
 }
