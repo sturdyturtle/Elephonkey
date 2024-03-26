@@ -1,4 +1,4 @@
-namespace Elephonkey.ViewViewModels.Main.LoginContents;
+namespace Elephonkey.ViewViewModels.Main.LoginContents.ForgotPasswordPageContents;
 
 public partial class ForgotPasswordPageView : ContentPage
 {
