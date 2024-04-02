@@ -1,52 +1,97 @@
-﻿using Elephonkey.Services;
-using Elephonkey.ViewViewModels;
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-namespace Elephonkey;
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Elephonkey</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
 
-public static class MauiProgram
-{
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			.RegisterAppServices()
-            	.RegisterViewModels()
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("NotoSerif-Bold.ttf", "NotoSerifBold");
-				fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
-                fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemibold");
-                fonts.AddFont("Poppins-Regular.ttf", "Poppins");
-				fonts.AddFont("MaterialIconsOutlined-Regular.otf", "Material");
-            });
+		<!-- Display name -->
+		<ApplicationTitle>Elephonkey</ApplicationTitle>
 
-		return builder.Build();
-	}
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.elephonkey</ApplicationId>
+		<ApplicationIdGuid>0329e02f-11cd-4807-9229-ff63b99b87d8</ApplicationIdGuid>
 
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddSingleton<INewsService, MockNewsService>();
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
 
-        return mauiAppBuilder;
-    }
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
 
-    public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
-        mauiAppBuilder.Services.AddTransient<BiasSurveyPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ArticlesPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<ResultsPageViewModel>();
-	mauiAppBuilder.Services.AddTransient<SettingsPageViewModel>();
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+	  <EnableCodeSigning>false</EnableCodeSigning>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#477ee5" />
 
-        mauiAppBuilder.Services.AddTransient<HomePageView>();
-        mauiAppBuilder.Services.AddTransient<BiasSurveyPageView>();
-        mauiAppBuilder.Services.AddTransient<ArticlesPageView>();
-        mauiAppBuilder.Services.AddTransient<ResultsPageView>();
-	mauiAppBuilder.Services.AddTransient<SettingsPageView>();
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128" />
 
-        return mauiAppBuilder;
-    }
-}
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="ViewViewModels\" />
+	  <None Remove="Models\" />
+	  <None Remove="Resources\Fonts\NotoSerif-Bold.ttf" />
+	  <None Remove="Resources\Images\Profile.png" />
+	  <None Remove="Resources\Images\Bookmarks.png" />
+	  <None Remove="Resources\Images\Categories.png" />
+	  <None Remove="Resources\Images\Home.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\categories.png" />
+	  <None Remove="Resources\Images\bookmarks.png" />
+	  <None Remove="Resources\Images\profile.png" />
+	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
+	  <None Remove="Services\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ViewViewModels\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="Services\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Views\HomePageView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BiasSurveyPageView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ArticlesPageView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ResultsPageView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsPageView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\home.png" />
+	  <EmbeddedResource Include="Resources\Images\categories.png" />
+	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
+	  <EmbeddedResource Include="Resources\Images\profile.png" />
+	</ItemGroup>
+</Project>
