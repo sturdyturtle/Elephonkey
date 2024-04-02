@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>Elephonkey</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -16,32 +16,32 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.elephonkey</ApplicationId>
-		<ApplicationIdGuid>caf4eebd-0159-484b-bb10-ba590de075d6</ApplicationIdGuid>
+		<ApplicationIdGuid>0329e02f-11cd-4807-9229-ff63b99b87d8</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+	  <EnableCodeSigning>false</EnableCodeSigning>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#477ee5" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
-		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
@@ -49,46 +49,49 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
+	  <None Remove="ViewViewModels\" />
+	  <None Remove="Models\" />
+	  <None Remove="Resources\Fonts\NotoSerif-Bold.ttf" />
+	  <None Remove="Resources\Images\Profile.png" />
+	  <None Remove="Resources\Images\Bookmarks.png" />
+	  <None Remove="Resources\Images\Categories.png" />
+	  <None Remove="Resources\Images\Home.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\categories.png" />
+	  <None Remove="Resources\Images\bookmarks.png" />
+	  <None Remove="Resources\Images\profile.png" />
+	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
+	  <None Remove="Services\" />
 	</ItemGroup>
-
 	<ItemGroup>
-	  <Compile Update="ViewViewModels\Main\LoginPageView.xaml.cs">
-	    <DependentUpon>LoginPageView.xaml</DependentUpon>
-	  </Compile>
+	  <Folder Include="ViewViewModels\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
-
 	<ItemGroup>
-	  <MauiXaml Update="ViewViewModels\Main\AppContents\ArticlesPageContents\ArticlesPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Views\HomePageView.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\AppContents\HomePageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Views\BiasSurveyPageView.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\AppContents\ResultsPageContents\ResultsPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Views\ArticlesPageView.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\AppContents\SettingsPageContents\SettingsPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Views\ResultsPageView.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\AppContents\SurveyPageContents\SurveyPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\LoginContents\CreateAccountPageContents\CreateAccountPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\LoginContents\ForgotPasswordPageContents\ForgotPasswordPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="ViewViewModels\Main\LoginPageView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
+	  <MauiXaml Update="Views\SettingsPageView.xaml">
+	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>
-
 	<ItemGroup>
-	  <Folder Include="Models\Utilities\" />
+	  <EmbeddedResource Include="Resources\Images\home.png" />
+	  <EmbeddedResource Include="Resources\Images\categories.png" />
+	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
+	  <EmbeddedResource Include="Resources\Images\profile.png" />
 	</ItemGroup>
-
 </Project>

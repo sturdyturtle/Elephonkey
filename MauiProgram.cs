@@ -1,25 +1,52 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Elephonkey.Services;
+using Elephonkey.ViewViewModels;
 
-namespace Elephonkey
+namespace Elephonkey;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+	public static MauiApp CreateMauiApp()
+	{
+		var builder = MauiApp.CreateBuilder();
+		builder
+			.UseMauiApp<App>()
+			.RegisterAppServices()
+            	.RegisterViewModels()
+			.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("NotoSerif-Bold.ttf", "NotoSerifBold");
+				fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
+                fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemibold");
+                fonts.AddFont("Poppins-Regular.ttf", "Poppins");
+				fonts.AddFont("MaterialIconsOutlined-Regular.otf", "Material");
+            });
+
+		return builder.Build();
+	}
+
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        mauiAppBuilder.Services.AddSingleton<INewsService, MockNewsService>();
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+        return mauiAppBuilder;
+    }
 
-            return builder.Build();
-        }
+    public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
+    {
+        mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
+        mauiAppBuilder.Services.AddTransient<BiasSurveyPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ArticlesPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<ResultsPageViewModel>();
+	mauiAppBuilder.Services.AddTransient<SettingsPageViewModel>();
+
+        mauiAppBuilder.Services.AddTransient<HomePageView>();
+        mauiAppBuilder.Services.AddTransient<BiasSurveyPageView>();
+        mauiAppBuilder.Services.AddTransient<ArticlesPageView>();
+        mauiAppBuilder.Services.AddTransient<ResultsPageView>();
+	mauiAppBuilder.Services.AddTransient<SettingsPageView>();
+
+        return mauiAppBuilder;
     }
 }

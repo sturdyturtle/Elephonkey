@@ -4,11 +4,24 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Elephonkey"
+    xmlns:views="clr-namespace:Elephonkey.ViewViewModels"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+       <Tab x:Name="HomeTab">
+           <ShellContent ContentTemplate="{DataTemplate views:HomePageView}" Route="home"/>
+       </Tab>
+        <Tab x:Name="SectionsTab">
+           <ShellContent ContentTemplate="{DataTemplate views:BiasSurveyPageView}" Route="sections"/>
+       </Tab>
+        <Tab x:Name="ArticlesTab">
+           <ShellContent ContentTemplate="{DataTemplate views:ArticlesPageView}" Route="bookmarks"/>
+       </Tab>
+       <Tab x:Name="ResultsTab">
+           <ShellContent ContentTemplate="{DataTemplate views:ResultsPageView}" Route="profile"/>
+       </Tab>
+        <Tab x:Name="SettingsTab">
+           <ShellContent ContentTemplate="{DataTemplate views:SettingsPageView}" Route="profile"/>
+       </Tab>
+    </TabBar>
 </Shell>
