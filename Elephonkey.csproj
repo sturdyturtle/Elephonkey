@@ -30,68 +30,71 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
-	  <EnableCodeSigning>false</EnableCodeSigning>
-	</PropertyGroup>
-	<ItemGroup>
-		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#477ee5" />
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
+    <EnableCodeSigning>false</EnableCodeSigning>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#477ee5" />
 
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128" />
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128" />
 
-		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
-		<MauiFont Include="Resources\Fonts\*" />
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+    <MauiFont Include="Resources\Fonts\*" />
 
-		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="ViewViewModels\" />
-	  <None Remove="Models\" />
-	  <None Remove="Resources\Fonts\NotoSerif-Bold.ttf" />
-	  <None Remove="Resources\Images\Profile.png" />
-	  <None Remove="Resources\Images\Bookmarks.png" />
-	  <None Remove="Resources\Images\Categories.png" />
-	  <None Remove="Resources\Images\Home.png" />
-	  <None Remove="Resources\Images\home.png" />
-	  <None Remove="Resources\Images\categories.png" />
-	  <None Remove="Resources\Images\bookmarks.png" />
-	  <None Remove="Resources\Images\profile.png" />
-	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
-	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
-	  <None Remove="Services\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="ViewViewModels\" />
-	  <Folder Include="Models\" />
-	  <Folder Include="Services\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <MauiXaml Update="Views\HomePageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\BiasSurveyPageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ArticlesPageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ResultsPageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SettingsPageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	</ItemGroup>
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\home.png" />
-	  <EmbeddedResource Include="Resources\Images\categories.png" />
-	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
-	  <EmbeddedResource Include="Resources\Images\profile.png" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Remove="ViewViewModels\" />
+    <None Remove="Models\" />
+    <None Remove="Resources\Fonts\NotoSerif-Bold.ttf" />
+    <None Remove="Resources\Images\Profile.png" />
+    <None Remove="Resources\Images\Bookmarks.png" />
+    <None Remove="Resources\Images\Categories.png" />
+    <None Remove="Resources\Images\Home.png" />
+    <None Remove="Resources\Images\home.png" />
+    <None Remove="Resources\Images\categories.png" />
+    <None Remove="Resources\Images\bookmarks.png" />
+    <None Remove="Resources\Images\profile.png" />
+    <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+    <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+    <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewViewModels\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="ViewViewModels\HomePageView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewViewModels\SurveyPageView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewViewModels\ArticlesPageView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewViewModels\SettingsPageView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewViewModels\ResultsPageView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+    <MauiXaml Update="ViewViewModels\ArticleView.xaml">
+      <SubType></SubType>
+    </MauiXaml>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\home.png" />
+    <EmbeddedResource Include="Resources\Images\categories.png" />
+    <EmbeddedResource Include="Resources\Images\bookmarks.png" />
+    <EmbeddedResource Include="Resources\Images\profile.png" />
+  </ItemGroup>
 </Project>

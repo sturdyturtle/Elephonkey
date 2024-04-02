@@ -1,5 +1,6 @@
 ﻿using Elephonkey.Services;
-using Elephonkey.ViewViewModels;
+using Elephonkey.ViewViewModels.Appcontents;
+using Elephonkey.ViewViewModels.AppContents;
 
 namespace Elephonkey;
 
@@ -36,13 +37,13 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<HomePageViewModel>();
-        mauiAppBuilder.Services.AddTransient<BiasSurveyPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<SurveyPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ArticlesPageViewModel>();
         mauiAppBuilder.Services.AddTransient<ResultsPageViewModel>();
 	mauiAppBuilder.Services.AddTransient<SettingsPageViewModel>();
 
         mauiAppBuilder.Services.AddTransient<HomePageView>();
-        mauiAppBuilder.Services.AddTransient<BiasSurveyPageView>();
+        mauiAppBuilder.Services.AddTransient<SurveyPageView>();
         mauiAppBuilder.Services.AddTransient<ArticlesPageView>();
         mauiAppBuilder.Services.AddTransient<ResultsPageView>();
 	mauiAppBuilder.Services.AddTransient<SettingsPageView>();

@@ -1,5 +1,5 @@
 ﻿
-using Elephonkey.ViewViewModels.Main.AppContents;
+using Elephonkey.ViewViewModels.AppContents;
 
 namespace Elephonkey
 {
