@@ -1,6 +1,6 @@
-﻿using Elephonkey.ViewViewModels.AppContents;
+using Elephonkey.ViewViewModels.AppContents;
 
-namespace MAUIDemo;
+namespace Elephonkey;
 
 public partial class AppShell : Shell
 {
